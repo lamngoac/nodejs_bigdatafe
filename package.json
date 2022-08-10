@@ -1,0 +1,29 @@
+{
+  "name": "bigdatafe",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon --inspect index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lamngoac/nodejs_bigdatafe.git"
+  },
+  "keywords": [
+    "bigdata",
+    "finalexam",
+    "2022"
+  ],
+  "author": "lamnguyen",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lamngoac/nodejs_bigdatafe/issues"
+  },
+  "homepage": "https://github.com/lamngoac/nodejs_bigdatafe#readme",
+  "dependencies": {
+    "express": "^4.18.1",
+    "nodemon": "^2.0.19"
+  }
+}
