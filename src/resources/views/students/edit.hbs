@@ -1,0 +1,38 @@
+<div class="mt-4">
+    <h3>CẬP NHẬT THÔNG TIN HỌC VIÊN HỌC VIÊN</h3>
+    <form class="mt-4" method="POST" action="/students/{{student._id}}?_method=PUT">
+        <div class="form-group">
+            <label for="fullName">Tên học viên</label>
+            <input type="text" class="form-control" value="{{student.fullName}}" id="fullName" name="fullName">
+        </div>
+        <div class="form-group">
+            <label for="studentCode">Mã học viên</label>
+            <input type="text" class="form-control" value="{{student.studentCode}}" id="studentCode" name="studentCode">
+        </div>
+        <div class="form-group">
+            <label for="birthday">Ngày sinh</label>
+            <input type="date" class="form-control" value="{{student.birthday}}" id="birthday" name="birthday">
+        </div>
+        <div class="form-group">
+            <label for="gender">Giới tính</label>
+            <input type="text" class="form-control" value="{{student.gender}}" id="gender" name="gender">
+        </div>
+        <div class="form-group">
+            <label for="gene">Khóa</label>
+            <input type="text" class="form-control" value="{{student.gene}}" id="gene" name="gene">
+        </div>
+        <div class="form-group">
+            <label for="city">Thành phố</label>
+            <input type="text" class="form-control" value="{{student.city}}" id="city" name="city">
+        </div>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="text" class="form-control" value="{{student.email}}" id="email" name="email">
+        </div>
+        <div class="form-group">
+            <label for="certificated">Hệ đào tạo</label>
+            <input type="text" class="form-control" value="{{student.certificated}}" id="certificated" name="certificated">
+        </div>
+        <button type="submit" class="btn btn-primary">Lưu học viên</button>
+    </form>
+</div>

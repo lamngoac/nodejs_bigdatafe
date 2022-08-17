@@ -1,0 +1,20 @@
+<div class="mt-4">
+    <h3>THÊM HỌC VIÊN VÀO KHÓA HỌC</h3>
+    <form method="POST" action="/learns/store">
+        <div class="form-group">
+            <label for="studentCode">Mã học viên</label>
+            <input type="text" class="form-control" id="studentCode" name="studentCode">
+        </div>
+        <div class="form-group">
+            <label for="subCode">Mã môn học</label>
+            <input type="text" class="form-control" id="subCode" name="subCode">
+        </div>
+        <div class="form-group">
+            <label for="studied">Tình trạng học</label>
+            <select class="form-control" id="studied" name="studied">
+                <option value="false">Đang học</option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Thêm mới thông tin</button>
+    </form>
+</div>

@@ -1,0 +1,25 @@
+<div class="mt-4">
+    <h3>SỬA THÔNG TIN HỌC VIÊN TRONG KHÓA HỌC</h3>
+    <form method="POST" action="/learns/{{learn._id}}?_method=PUT">
+        <div class="form-group">
+            <label for="studentCode">Mã học viên</label>
+            <input type="text" class="form-control" value="{{learn.studentCode}}" id="studentCode" name="studentCode">
+        </div>
+        <div class="form-group">
+            <label for="subCode">Mã môn học</label>
+            <input type="text" class="form-control" value="{{learn.subCode}}" id="subCode" name="subCode">
+        </div>
+        <div class="form-group">
+            <label for="studied">Tình trạng học</label>
+            <select class="form-control" value="{{learn.studied}}" id="studied" name="studied">
+                <option value="false">Đang học</option>
+                <option value="true">Đã học</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="mark">Điểm khóa học</label>
+            <input type="text" class="form-control" value="{{learn.mark}}" id="mark" name="mark">
+        </div>
+        <button type="submit" class="btn btn-primary">Thêm mới thông tin</button>
+    </form>
+</div>
