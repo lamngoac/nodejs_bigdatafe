@@ -4,9 +4,13 @@ const studensRouter = require('./students');
 const siteRouter = require('./site');
 const coursesRouter = require('./courses');
 const learnsRouter = require('./learns');
+const mlRouter = require('./ml');
+const visualizationsRouter = require('./visualizations');
 
 function route(app) {
     app.use('/news', newsRouter);
+    app.use('/visualizations', visualizationsRouter);
+    app.use('/ml', mlRouter);
     app.use('/me', meRouter);
     app.use('/learns', learnsRouter);
     app.use('/students', studensRouter);

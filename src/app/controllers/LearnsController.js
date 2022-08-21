@@ -1,18 +1,34 @@
 const Learn = require('../models/Learn');
+const Student = require('../models/Student');
+const Course = require('../models/Course');
 const { multipleMongooseToObject } = require('../../util/mongoose');
 const { mongooseToObject } = require('../../util/mongoose');
 
 class LearnsController {
-    // GET /learns/:id
+    // GET /learns/show 
     show(req, res, next) {
-        Learn.findById(req.params.id)
-            .then(learn => res.render('learns/show', { learn: mongooseToObject(learn) }))
+        // find learn follow studentCode
+        // Learn.find().select({studentCode: 'SV001'}).exec()
+        //     .then(learns => res.render('learns/show', { learns: multipleMongooseToObject(learns) }))
+        //     .catch(next);
+
+        // var query = Learn.find({}).select('studentCode -_id');
+        // query.exec(function (err, someValue) {
+        //     if (err) return next(err);
+        //     res.send(someValue);
+        // });
+
+        Student.find({ studentCode: req.params.studentCode })
+            .then(learns => res.render('learns/show', { learns: multipleMongooseToObject(learns) }))
             .catch(next);
     }
 
     // GET /learns/create
     create(req, res, next) {
-        res.render('learns/create');
+        Promise.all([Student.find({}), Course.find({})])
+            .then(([students, courses]) => res.render('learns/create', { students: multipleMongooseToObject(students), courses: multipleMongooseToObject(courses) }))
+            .catch(next);
+        //res.render('learns/create');
     }
 
     // POST /learns/store

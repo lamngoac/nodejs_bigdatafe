@@ -17,6 +17,40 @@
             <label for="videoCode">Link video khóa học</label>
             <input type="text" class="form-control" value="{{course.videoCode}}" id="videoCode" name="videoCode">
         </div>
+        <div class="form-group">
+            <label for="level">Độ khó khóa học</label>
+            <select class="form-control" value="{{course.level}}" id="level" name="level">
+                <option value="1">Nhập môn</option>
+                <option value="2">Dễ</option>
+                <option value="3">Trung bình</option>
+                <option value="4">Khó</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="duration">Thời lượng khóa học</label>
+            <input type="text" class="form-control" value="{{course.duration}}" id="duration" name="duration">
+        </div>
         <button type="submit" class="btn btn-primary">Lưu khóa học</button>
     </form>
 </div>
+
+<script>
+    // convert value of selectbox to text
+    let selectbox = document.getElementById('level');
+    let selectboxTrueVal = selectbox.attributes.value.value;
+    let option = selectbox.options[selectbox.selectedIndex];
+    if (selectboxTrueVal == '1') {
+        selectbox.selectedIndex = 0;
+    } else
+    if (selectboxTrueVal == '2') {
+        selectbox.selectedIndex = 1;
+    } else
+    if (selectboxTrueVal == '3') {
+        selectbox.selectedIndex = 2;
+    } else
+    if (selectboxTrueVal == '4') {
+        selectbox.selectedIndex = 3;
+    } else {
+        selectbox.selectedIndex = 0;
+    }
+</script>

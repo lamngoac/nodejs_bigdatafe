@@ -1,0 +1,56 @@
+<div class="mt-2 mb-4">
+    <div class="wrapper-chart">
+        <div class="chart-item">
+            <div class="text-center">Phân bố học viên theo tỉnh thành</div>
+            <div id="chart" class="std-address-chart"></div>
+            <button type="button" class="btn btn-primary refresh-btn-chart btn-std-address-chart">Tải lại</button>
+        </div>
+
+        <div class="chart-item">
+            <div class="text-center">Phân bố học viên theo khóa</div>
+            <div id="chart-other" class="std-address-chart"></div>
+            <button type="button" class="btn btn-primary refresh-btn-chart btn-std-gene-chart">Tải lại</button>
+        </div>
+    </div>
+</div>
+
+<script>
+//import ChartsEmbedSDK from '@mongodb-js/charts-embed-dom';
+const ChartsEmbedSDK = window.ChartsEmbedSDK;
+const sdk = new ChartsEmbedSDK({
+    baseUrl: 'https://charts.mongodb.com/charts-project-0-ajcyx',
+});
+
+// embed a chart
+const chart01 = sdk.createChart({
+    chartId: '62fde6ea-f09b-4b79-8ed9-177e032cc532',
+});
+
+const chart02 = sdk.createChart({
+    chartId: '62feee74-9842-4af9-8b7c-87bf57795f51',
+});
+
+// render the chart into a container
+chart01
+    .render(document.getElementById('chart'))
+    .catch(() => window.alert('Chart failed to initialise'));
+
+chart02
+    .render(document.getElementById('chart-other'))
+    .catch(() => window.alert('Chart failed to initialise'));
+
+// set CSS styles for the chart
+//let elem = document.querySelectorAll('#chart', '#chart-other').firstElementChild;
+//elem.style.minHeight = '500px';
+
+// refresh the chart
+document.querySelector('.btn-std-address-chart').addEventListener('click', () => {
+    chart01.refresh();
+    alert('Đã cập nhật');
+});
+
+document.querySelector('.btn-std-gene-chart').addEventListener('click', () => {
+    chart02.refresh();
+    alert('Đã cập nhật');
+});
+</script>

@@ -1,0 +1,17 @@
+<div>
+    <form method="GET" action="/learns/show">
+        <div>Thanh tìm kiếm</div>
+        <input type="text" placeholder="Nhập tên học viên" id="studentCode" name="studentCode">
+        <button type="submit">Tìm kiếm</button>
+    </form>
+    {{#each learns}}
+        <div>
+            <p>{{this.name}}</p>
+            <p>{{this.mark}}</p>
+        </div>
+    {{/each}}
+</div>
+
+<script>
+    
+</script>

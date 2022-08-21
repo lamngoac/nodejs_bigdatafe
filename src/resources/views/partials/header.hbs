@@ -14,7 +14,7 @@
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <a class="dropdown-item" href="/courses/create">Thêm khóa học</a>
             <a class="dropdown-item" href="/me/stored/courses">Khóa học của tôi</a>
-            <a class="dropdown-item" href="/me/stored/news">Bài viết của tôi</a>
+            <a class="dropdown-item" href="/news">Bài viết của tôi</a>
           </div>
         </li>
       </ul>
@@ -26,6 +26,7 @@
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <a class="dropdown-item" href="/students/create">Thêm học viên</a>
             <a class="dropdown-item" href="/me/stored/students">Danh sách học viên</a>
+            <a class="dropdown-item" href="/students/SV">Tìm kiếm học viên</a>
           </div>
         </li>
       </ul>
@@ -37,17 +38,30 @@
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <a class="dropdown-item" href="/learns/create">Thêm học viên vào khóa</a>
             <a class="dropdown-item" href="/me/stored/learns">Danh sách người học khóa</a>
+            {{!-- <a class="dropdown-item" href="/learns/show">Thông tin chi tiết</a> --}}
           </div>
         </li>
       </ul>
       <ul class="navbar-nav">
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Tài khoản
+            Machine Learning
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="#">Thông tin</a>
-            <a class="dropdown-item" href="#">Đăng xuất</a>
+            <a class="dropdown-item" href="/ml/linearregression">Linear Regression</a>
+            <a class="dropdown-item" href="#">More</a>
+          </div>
+        </li>
+      </ul>
+      <ul class="navbar-nav">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Mô hình hóa
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="/visualizations/chart">Học viên</a>
+            <a class="dropdown-item" href="/visualizations/course">Khóa học</a>
+            <a class="dropdown-item" href="/visualizations/learn">Đăng ký học</a>
           </div>
         </li>
       </ul>

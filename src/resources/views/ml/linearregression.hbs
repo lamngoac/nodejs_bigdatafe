@@ -1,0 +1,178 @@
+<div class="wrapper">
+  <div class="text-center" style="color: #FF4500;"><b>THỜI GIAN KHÓA HỌC DỰA TRÊN ĐỘ KHÓ</b></div>
+  <div id="container-draw" style="display: flex;">
+  <div class="form-group">
+    <label for="predict-function"><b>Hàm dự đoán:</b></label>
+    <input type="text" class="mb-4 custom-input" id="predict-function">
+  </div>
+  </div>
+  <div id="container-test" style="display: none;">
+    {{#each courses}}
+    <div class="form-group">
+      <label for="predict-function">Độ khó:</label>
+      <input type="text" name="courseLevels" value="{{this.level}}">
+    </div>
+    <div class="form-group">
+      <label for="predict-function">Thời lượng:</label>
+      <input type="text" name="courseDurations" value="{{this.duration}}">
+    </div>
+    {{/each}}
+  </div>
+</div>
+
+<script>
+  // Input course name to console
+  const courseLevels = document.querySelectorAll('input[name="courseLevels"]');
+  const courseDurations = document.querySelectorAll('input[name="courseDurations"]');
+
+  // Linear regression
+  let x_vals = [];
+  let y_vals = [];
+
+  let m, b; // slope, intercept
+            // y = mx + b
+
+  const learningRate = 0.5;
+  const optimizer = tf.train.sgd(learningRate);
+
+  let sketch = function(p){
+    p.setup = function(){
+      createCanvas(500, 500);
+      
+      m = tf.variable(tf.scalar(random(1)));
+      b = tf.variable(tf.scalar(random(1)));
+    }
+  }
+  new p5(sketch, 'container-draw');
+
+  function loss(pred, labels) {
+      return pred.sub(labels).square().mean();
+  }
+
+  function predict(x) {
+      const xs = tf.tensor1d(x);
+      const ys = m.mul(xs).add(b); // y = mx + b
+
+      return ys;
+  }
+
+  /*
+  function mousePressed() {
+      let x = map(mouseX, 100, width, 0, 1);
+      let y = map(mouseY, 0, height-100, 1, 0);
+      x_vals.push(x);
+      y_vals.push(y);
+  }
+  */
+
+  // Add values to x_vals and y_vals
+  courseLevels.forEach(courseLevel => {
+    //console.log(courseLevel.value);
+    y_vals.push(courseLevel.value);
+  });
+  courseDurations.forEach(courseDuration => {
+    //console.log(courseDuration.value);
+    x_vals.push(courseDuration.value);
+  });
+
+  x_vals = x_vals.map(x => x*0.025);
+  y_vals = y_vals.map(y => y*0.2);
+
+  function draw() {
+
+      tf.tidy(() => {
+          if(x_vals.length > 0) {
+              const ys = tf.tensor1d(y_vals);
+              optimizer.minimize(function() {
+                  return loss(predict(x_vals), ys);
+              });
+          }
+      });
+
+      background(255);
+
+      // draw the line border
+      stroke(0);
+      rect(100, 0, 0, 400);
+      rect(100, 400, 400, 0);
+      
+      textSize(16);
+      textStyle(NORMAL);
+      text('Thời lượng(h)', 250, 450);
+
+      textSize(16);
+      textStyle(NORMAL);
+      text('Độ khó', 40, 20);
+
+      // Note text value on graph
+      // x-axis
+      stroke(255);
+      textSize(10);
+      textStyle(NORMAL);
+      text('0', 90, 415);
+      text('5', 147, 415);
+      text('10', 197, 415);
+      text('15', 247, 415);
+      text('20', 297, 415);
+      text('25', 347, 415);
+      text('30', 397, 415);
+      text('35', 447, 415);
+
+      // y-axis
+      stroke(255);
+      textSize(10);
+      textStyle(NORMAL);
+      text('Khó(4)', 60, 82);
+      text('Bình thường(3)', 25, 162);
+      text('Dễ(2)', 65, 242);
+      text('Nhập môn(1)', 35, 322);
+
+
+      // Note value on graph
+      stroke(0);
+      strokeWeight(4);
+      // x-axis
+      point(100, 400);
+      point(150, 400);
+      point(200, 400);
+      point(250, 400);
+      point(300, 400);
+      point(350, 400);
+      point(400, 400);
+      point(450, 400);
+      // y-axis
+      point(100, 320);
+      point(100, 240);
+      point(100, 160);
+      point(100, 80);
+
+      // draw the point
+      for (let i = 0; i < x_vals.length; i++) {
+          stroke(0);
+          strokeWeight(6);
+          let px = map(x_vals[i], 0, 1, 100, width);
+          let py = map(y_vals[i], 0, 1, 400, 0);
+          point(px, py);
+      }
+
+      tf.tidy(() => {
+          const lineX = [0, 1];
+          const ys = predict(lineX);
+          let lineY = ys.dataSync();
+
+          let x1 = map(lineX[0], 0, 1, 100, width);
+          let x2 = map(lineX[1], 0, 1, 100, width);
+
+          let y1 = map(lineY[0], 0, 1, 400, 0);
+          let y2 = map(lineY[1], 0, 1, 400, 0);
+
+          stroke(255,0,0);
+          strokeWeight(2);
+          line(x1, y1, x2, y2);
+      });
+
+      let res_m = m.dataSync()[0]/8;
+      let res_b = b.dataSync()[0]*5;
+      document.getElementById('predict-function').setAttribute('value', `y = ${res_m}x + ${res_b}`);
+  }
+</script>

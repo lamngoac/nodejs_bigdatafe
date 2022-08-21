@@ -1,0 +1,35 @@
+<div>
+    <div class="wrapper-chart">
+        <div class="chart-item">
+            <div class="text-center">Thời lượng và độ khó khóa học</div>
+            <div id="chart" class="course-dur-lev-chart"></div>
+            <button type="button" class="btn btn-primary refresh-btn-chart btn-course-dur-lev-chart">Tải lại</button>
+        </div>
+    </div>
+</div>
+
+<script>
+const ChartsEmbedSDK = window.ChartsEmbedSDK;
+const sdk = new ChartsEmbedSDK({
+    baseUrl: 'https://charts.mongodb.com/charts-project-0-ajcyx',
+});
+
+// embed a chart
+const chart01 = sdk.createChart({
+    chartId: '63025f1d-580f-4f92-8fd5-f154ae97b887',
+});
+
+// render the chart into a container
+chart01
+    .render(document.getElementById('chart'))
+    .catch(() => window.alert('Chart failed to initialise'));
+
+//set CSS styles for first div child
+let elem = document.getElementById('chart').firstElementChild.style.minHeight = '500px';
+
+// reset the chart
+document.querySelector('.btn-course-dur-lev-chart').addEventListener('click', () => {
+    chart01.refresh();
+    alert('Đã cập nhật');
+});
+</script>

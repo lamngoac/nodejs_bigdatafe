@@ -1,0 +1,35 @@
+<div>
+    <div class="wrapper-chart">
+        <div class="chart-item" style="width: 1000px">
+            <div class="text-center">Thống kê điểm theo khóa học</div>
+            <div id="chart" class="learn-mark-chart"></div>
+            <button type="button" class="btn btn-primary refresh-btn-chart btn-learn-mark-chart">Tải lại</button>
+        </div>
+    </div>
+</div>
+
+<script>
+const ChartsEmbedSDK = window.ChartsEmbedSDK;
+const sdk = new ChartsEmbedSDK({
+    baseUrl: 'https://charts.mongodb.com/charts-project-0-ajcyx',
+});
+
+// embed a chart
+const chart01 = sdk.createChart({
+    chartId: '63026637-580f-4552-836a-f154ae9dda8d',
+});
+
+// render the chart into a container
+chart01
+    .render(document.getElementById('chart'))
+    .catch(() => window.alert('Chart failed to initialise'));
+
+//set CSS styles for first div child
+let elem = document.getElementById('chart').firstElementChild.style.minHeight = '500px';
+
+// reset the chart
+document.querySelector('.btn-learn-mark-chart').addEventListener('click', () => {
+    chart01.refresh();
+    alert('Đã cập nhật');
+});
+</script>

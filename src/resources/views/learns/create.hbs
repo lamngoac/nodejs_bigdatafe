@@ -6,8 +6,16 @@
             <input type="text" class="form-control" id="studentCode" name="studentCode">
         </div>
         <div class="form-group">
+            <label for="fullName">Tên học viên</label>
+            <input type="text" class="form-control" id="fullName" name="fullName" readonly="readonly">
+        </div>
+        <div class="form-group">
             <label for="subCode">Mã môn học</label>
             <input type="text" class="form-control" id="subCode" name="subCode">
+        </div>
+        <div class="form-group">
+            <label for="name">Tên môn học</label>
+            <input type="text" class="form-control" id="name" name="name" readonly="readonly">
         </div>
         <div class="form-group">
             <label for="studied">Tình trạng học</label>
@@ -15,6 +23,67 @@
                 <option value="false">Đang học</option>
             </select>
         </div>
+        <div style="display: none;">
+            <span>students</span>
+            {{#each students}}
+                <input type="text" name="stds-code" value="{{this.studentCode}}">
+                <input type="text" name="stds-name" value="{{this.fullName}}">
+            {{/each}}
+            <span>courses</span>
+            {{#each courses}}
+                <input type="text" name="courses-code" value="{{this.subCode}}">
+                <input type="text" name="courses-name" value="{{this.name}}">
+            {{/each}}
+        </div>
         <button type="submit" class="btn btn-primary">Thêm mới thông tin</button>
     </form>
 </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const studentsName = document.querySelectorAll('input[name="stds-name"]');
+        const coursesName = document.querySelectorAll('input[name="courses-name"]');
+        const studentsCode = document.querySelectorAll('input[name="stds-code"]');
+        const coursesCode = document.querySelectorAll('input[name="courses-code"]');
+
+        let _studentsName = [];
+        let _coursesName = [];
+        let _studentsCode = [];
+        let _coursesCode = [];
+
+        studentsName.forEach(function(item) {
+            _studentsName.push(item.value);
+        });
+        coursesName.forEach(function(item) {
+            _coursesName.push(item.value);
+        });
+        studentsCode.forEach(function(item) {
+            _studentsCode.push(item.value);
+        });
+        coursesCode.forEach(function(item) {
+            _coursesCode.push(item.value);
+        });
+
+        // When type the studentCode input, set the fullName input value fit with the studentCode input value
+        $('#studentCode').on('blur', function() {
+            const studentCode = $(this).val();
+            console.log(studentCode); // Debug
+            const index = _studentsCode.indexOf(studentCode);  
+            if (index !== -1) {
+                $('#fullName').val(_studentsName[index]);
+                console.log(_studentsName[index]); // Debug
+            }  
+        });
+
+        // When type the subCode input, set the name input value fit with the subCode input value
+        $('#subCode').on('blur', function() {
+            const subCode = $(this).val();
+            console.log(subCode); // Debug
+            const index = _coursesCode.indexOf(subCode);  
+            if (index !== -1) {
+                $('#name').val(_coursesName[index]);
+                console.log(_coursesName[index]); // Debug
+            }  
+        });
+    })
+</script>

@@ -1,0 +1,50 @@
+<div class="mt-4">
+    <div class="search-form">
+        <input type="text" name="studentCode">
+        <button class="btn btn-primary">Tìm kiếm</button>
+    </div>
+    <div class="form-group mt-4">
+        <label for="fullName">Tên học viên</label>
+        <input type="text" class="form-control" id="fullName" name="fullName" value="{{student.fullName}}">
+    </div>
+    <div class="form-group">
+        <label for="studentCode">Mã học viên</label>
+        <input type="text" class="form-control" id="studentCode" name="studentCode" value="{{student.studentCode}}">
+    </div>
+    <div class="form-group">
+        <label for="birthday">Ngày sinh</label>
+        <input type="text" class="form-control" id="birthday" name="birthday" value="{{student.birthday}}">
+    </div>
+    <div class="form-group">
+        <label for="gender">Giới tính</label>
+        <input type="text" class="form-control" id="gender" name="gender" value="{{student.gender}}">
+    </div>
+    <div class="form-group">
+        <label for="gene">Khóa</label>
+        <input type="text" class="form-control" id="gene" name="gene" value="{{student.gene}}">
+    </div>
+    <div class="form-group">
+        <label for="city">Thành phố</label>
+        <input type="text" class="form-control" id="city" name="city" value="{{student.city}}">
+    </div>
+    <div class="form-group">
+        <label for="email">Email</label>
+        <input type="text" class="form-control" id="email" name="email" value="{{student.email}}">
+    </div>
+    <div class="form-group">
+        <label for="certificated">Hệ đào tạo</label>
+        <input type="text" class="form-control" id="certificated" name="certificated" value="{{student.certificated}}">
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var studentCode = document.querySelector('input[name="studentCode"]');
+        var searchBtn = document.querySelector('.btn');
+        searchBtn.addEventListener('click', function() {
+            var studentCode = document.querySelector('input[name="studentCode"]').value;
+            window.location.href = '/students/' + studentCode;
+        });
+    });
+</script>
+

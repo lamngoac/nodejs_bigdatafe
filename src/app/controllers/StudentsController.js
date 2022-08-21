@@ -5,7 +5,7 @@ const { mongooseToObject } = require('../../util/mongoose')
 class StudentsController {
     // GET /students/:slug
     show(req, res, next) {
-        Student.findOne({ slug: req.params.studentCode })
+        Student.findOne({ studentCode: req.params.studentCode })
             .then(student => {
                 res.render('students/show', { student: mongooseToObject(student) });
             })

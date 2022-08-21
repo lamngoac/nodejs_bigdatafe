@@ -11,6 +11,6 @@ router.put('/:id', studentsController.update);
 router.patch('/:id/restore', studentsController.restore);
 router.delete('/:id', studentsController.delete);
 router.delete('/:id/force', studentsController.forceDelete);
-router.get('/:slug', studentsController.show);
+router.get('/:studentCode', studentsController.show);
 
 module.exports = router;

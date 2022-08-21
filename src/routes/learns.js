@@ -11,6 +11,6 @@ router.put('/:id', learnsController.update);
 router.patch('/:id/restore', learnsController.restore);
 router.delete('/:id', learnsController.delete);
 router.delete('/:id/force', learnsController.forceDelete);
-router.get('/:slug', learnsController.show);
+//router.get('/show/:studentCode', learnsController.show);
 
 module.exports = router;

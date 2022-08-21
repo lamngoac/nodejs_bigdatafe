@@ -6,7 +6,9 @@ const Schema = mongoose.Schema;
 
 const Learn = new Schema({
     studentCode: { type: String, required: true },
+    fullName: { type: String, required: true },
     subCode: { type: String, required: true },
+    name: { type: String, required: true },
     studied: { type: Boolean, default: false },
     mark: { type: Number, default: 0 },
     createdAt: { type: Date, default: Date.now },

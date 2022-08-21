@@ -20,6 +20,19 @@
             <label for="mark">Điểm khóa học</label>
             <input type="text" class="form-control" value="{{learn.mark}}" id="mark" name="mark">
         </div>
-        <button type="submit" class="btn btn-primary">Thêm mới thông tin</button>
+        <button type="submit" class="btn btn-primary">Cập nhật thông tin</button>
     </form>
 </div>
+
+<script>
+    // let selectbox show right option when load data
+    let selectbox = document.getElementById('studied');
+    let selectboxTrueVal = selectbox.attributes.value.value;
+    let option = selectbox.options[selectbox.selectedIndex];
+    if (selectboxTrueVal == 'true') {
+        selectbox.selectedIndex = 1;
+    }
+    if (selectboxTrueVal == 'false') {
+        selectbox.selectedIndex = 0;
+    }
+</script>

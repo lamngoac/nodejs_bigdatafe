@@ -42,7 +42,7 @@
             <td scope="row">{{sum @index 1}}</td>
             <td>{{this.studentCode}}</td>
             <td>{{this.subCode}}</td>
-            <td>{{this.studied}}</td>
+            <td class="td-studied">{{this.studied}}</td>
             <td>{{this.mark}}</td>
             <td>
                 <a href="/learns/{{this._id}}/edit" class="btn btn-link">Sửa</a>
@@ -127,5 +127,18 @@
             checkAllSubmitBtn.attr('disabled', true);
           }
         };
+
+        // Format learn.studied from boolean to values
+        $('.td-studied').each(function() {
+          var $this = $(this);
+          var studied = $this.text();
+          console.log(studied);
+          if (studied === 'true') {
+            $this.text('Đã hoàn thành');
+          } 
+          if (studied === 'false') {
+            $this.text('Chưa hoàn thành');
+          }
+        })
     });
 </script>
